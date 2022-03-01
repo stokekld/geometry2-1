@@ -48,7 +48,6 @@ add_library(${PROJECT_NAME} SHARED
   src/buffer_server.cpp
   src/transform_broadcaster.cpp
   src/static_transform_broadcaster.cpp
-  /usr/lib/arm-linux-gnueabihf/libatomic.so.1
 )
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -126,7 +125,7 @@ target_link_libraries(tf2_monitor
   ${PROJECT_NAME}
 )
 if(HAVE_LIBATOMICS)
-  target_link_libraries(tf2_monitor -latomic)
+  target_link_libraries(tf2_monitor /usr/lib/arm-linux-gnueabihf/libatomic.so.1)
 endif()
 ament_target_dependencies(tf2_monitor
   ${dependencies}
