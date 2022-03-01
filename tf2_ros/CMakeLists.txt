@@ -53,7 +53,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>")
 ament_target_dependencies(${PROJECT_NAME}
-  ${dependencies}
+  ${dependencies} atomic
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE "TF2_ROS_BUILDING_DLL")
@@ -67,7 +67,7 @@ if(HAVE_LIBATOMICS)
   target_link_libraries(buffer_server atomic)
 endif()
 ament_target_dependencies(buffer_server
-  ${dependencies}
+  ${dependencies} 
 )
 
 add_library(static_transform_broadcaster_node SHARED
