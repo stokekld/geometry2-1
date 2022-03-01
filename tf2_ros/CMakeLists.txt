@@ -94,7 +94,7 @@ target_link_libraries(static_transform_publisher
   static_transform_broadcaster_node
 )
 if(HAVE_LIBATOMICS)
-  target_link_libraries(static_transform_publisher atomic)
+  target_link_libraries(static_transform_publisher -latomic)
 endif()
 ament_target_dependencies(static_transform_publisher
   "geometry_msgs"
