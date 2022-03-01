@@ -125,7 +125,7 @@ target_link_libraries(tf2_monitor
   ${PROJECT_NAME}
 )
 if(HAVE_LIBATOMICS)
-  target_link_libraries(tf2_monitor atomic)
+  target_link_libraries(tf2_monitor -latomic)
 endif()
 ament_target_dependencies(tf2_monitor
   ${dependencies}
