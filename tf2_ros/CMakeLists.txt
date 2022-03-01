@@ -91,6 +91,9 @@ target_link_libraries(static_transform_publisher
   ${PROJECT_NAME}
   static_transform_broadcaster_node
 )
+if(HAVE_LIBATOMICS)
+  target_link_libraries(static_transform_publisher atomic)
+endif()
 ament_target_dependencies(static_transform_publisher
   "geometry_msgs"
   "rclcpp"
