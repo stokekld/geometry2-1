@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(tf2_ros)
 
+include(CheckLibraryExists)
+check_library_exists(atomic __atomic_load_8 "" HAVE_LIBATOMICS)
+
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -113,6 +116,9 @@ add_executable(tf2_monitor
 target_link_libraries(tf2_monitor
   ${PROJECT_NAME}
 )
+if(HAVE_LIBATOMICS)
+  target_link_libraries(tf2_monitor atomic)
+endif()
 ament_target_dependencies(tf2_monitor
   ${dependencies}
 )
