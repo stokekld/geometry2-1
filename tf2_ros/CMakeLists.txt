@@ -122,11 +122,9 @@ add_executable(tf2_monitor
   src/tf2_monitor.cpp
 )
 target_link_libraries(tf2_monitor
+  /usr/lib/arm-linux-gnueabihf/libatomic.so.1
   ${PROJECT_NAME}
 )
-if(HAVE_LIBATOMICS)
-  target_link_libraries(tf2_monitor /usr/lib/arm-linux-gnueabihf/libatomic.so.1)
-endif()
 ament_target_dependencies(tf2_monitor
   ${dependencies}
 )
