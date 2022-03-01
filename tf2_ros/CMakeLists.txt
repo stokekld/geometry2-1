@@ -53,18 +53,17 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>")
 ament_target_dependencies(${PROJECT_NAME}
-  ${dependencies} atomic
+  ${dependencies}
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE "TF2_ROS_BUILDING_DLL")
 
 # buffer_server executable
 add_executable(buffer_server src/buffer_server_main.cpp)
-target_link_libraries(buffer_server
-  ${PROJECT_NAME}
-)
 if(HAVE_LIBATOMICS)
-  target_link_libraries(buffer_server atomic)
+  target_link_libraries(buffer_server atomic ${PROJECT_NAME})
+else()
+  target_link_libraries(buffer_server ${PROJECT_NAME})
 endif()
 ament_target_dependencies(buffer_server
   ${dependencies} 
