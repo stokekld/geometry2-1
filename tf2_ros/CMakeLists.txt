@@ -63,6 +63,9 @@ add_executable(buffer_server src/buffer_server_main.cpp)
 target_link_libraries(buffer_server
   ${PROJECT_NAME}
 )
+if(HAVE_LIBATOMICS)
+  target_link_libraries(buffer_server atomic)
+endif()
 ament_target_dependencies(buffer_server
   ${dependencies}
 )
@@ -107,6 +110,9 @@ add_executable(tf2_echo
 target_link_libraries(tf2_echo
   ${PROJECT_NAME}
 )
+if(HAVE_LIBATOMICS)
+  target_link_libraries(tf2_echo atomic)
+endif()
 ament_target_dependencies(tf2_echo
   "geometry_msgs"
   "rclcpp"
